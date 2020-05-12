@@ -20,31 +20,81 @@ var vue = {
             Implementação do select2
             propriedade: [
                 name: Nome do elemento base
+                label: Texto do label do componente
+                database: Se refere a qual a base de dados será utilizada para exibir as opções
+            ]
+        */
+       Vue.component("datas", {
+        template: $('#data').html(),
+        props: {
+            name: {
+                type: String,
+            },
+            label: {}
+        },
+        // data(){
+        //     return {
+                
+        //     }
+        // },
+        // mounted: function(){
+        //     var component = this
+            
+            
+        // }
+    })
+
+        /* Componente: Select2
+            Implementação do select2
+            propriedade: [
+                name: Nome do elemento base
+                label: Texto do label do componente
+                database: Se refere a qual a base de dados será utilizada para exibir as opções
             ]
         */
         Vue.component("select2", {
             template: $('#select2').html(),
             props: {
                 name: {
-                    // type: String,
-                    required: true
-                  },
+                    type: String,
+                },
                 label: {},
-
+                database: {
+                    default: 0
+                }
             },
             data(){
                 return {
-                    dados: [
+                    dados: {
+                        0: [],
+                        1: [
                         "Ave",
                         "Macaco",
                         "Girafa",
                         "MORANDO"
-                    ]
+                        ],
+                        2: [
+                        "NEM",
+                        "FER",
+                        "RANDO"
+                    ]},
                 }
+            },
+            beforeMount() {
+                var cases = this.database
+
+                // Caso seja acrescentado algum dado que deve vir através do retorno de uma consulta, acrescentar o array no switch abaixo.
+                switch(cases){
+                    case '3':
+                    case '4':
+                        this.dados[cases] = ["MANGALO", "GARGALO"]
+                        break
+                                 
+                }
+
             },
             mounted: function(){
                 var component = this
-                
                 $('.' + component.name + ' .uf-select2').select2({
                     placeholder: 'Selecione uma opção',
                     language: {
@@ -55,10 +105,9 @@ var vue = {
                 });
 
                 $('.'+ component.name + ' .selection').on('click', function(){
-                    console.log("AQUI");
                         
-                    $(component.dados).each(function(index, element){
-        
+                    $(component.dados[component.database]).each(function(index, element){
+                        
                         //Este if procura algum componente no select que tenha um value igual ao inserido, caso haja ele não é inserido novamente.
                         if ( $('.' + component.name + ' .uf-select2').find(`option[value="${element}"]`).length == 0 ) {
                             
@@ -74,7 +123,6 @@ var vue = {
                     
                     // Após carregar os novos elementos o select deve ser fechado e reaberto para renderizar estes elementos.
                     $('.' + component.name + ' .uf-select2').select2('close').select2('open')
-                    
         
                 })
                 

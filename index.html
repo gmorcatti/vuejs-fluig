@@ -23,25 +23,30 @@
 
       <div class="col-md-10 col-md-offset-1" id="app">
           <hr>
-          <div class="row" >
+          <div class="row">
               <div class="col-md-2" >
                   <modal name="modalzin" cleanclose></modal>
               </div>
               <div class="col-md-2" >
-                  <input-label label="Campo Tipo quantidade" tipo="quantidade" name='teste1'></input-label>
+                  <input-label label="Quantidade" tipo="quantidade" name='teste1'></input-label>
               </div>
-              <div class="col-md-offset-2 col-md-2">
-                  <input-label label="Campo Tipo money" tipo="money" name='teste2'></input-label>
+              <div class="col-md-4">
+                  <input-label label="MONEY" tipo="money" name='teste2'></input-label>
               </div>
               <div class="col-md-4" >
-                  <input-label label="Q ISSO COLEGA (QUANTIDADE)" tipo="quantidade" name='teste3'></input-label>
+                  <input-label label="QUANTIDADE 2" tipo="quantidade" name='teste3'></input-label>
               </div>
           </div>
           <hr>
           <div class="row">
-              <div class="col-md-12">
-                  <select2 name="mar" label="Label do select2"></select2>
-                  <select2 name="mar2" label="Label do select2 2"></select2>
+              <div class="col-md-4">
+                  <select2 name="mar" label="Label do select2" database="1"></select2>
+              </div>
+              <div class="col-md-4">
+                <select2 name="mar2" label="Label do select2 2" database="4"></select2>
+              </div>
+              <div class="col-md-4">
+                <datas name="datinha" label="Data Necessidade"></datas>
               </div>
           </div>
       </div>
@@ -92,6 +97,17 @@
       </div>
     </template>
         
+    <template id="data">
+      <div class="form-group">
+        <label :for="name">{{label}}</label>
+        <div class="input-group">
+            <input readonly type="text" class="form-control" :name="name">
+            <span class="input-group-addon iconData esconde-botao">
+              <i class="far fa-calendar-alt"></i>
+            s</span>
+        </div>
+    </div>
+    </template>
         
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
