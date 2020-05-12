@@ -62,20 +62,20 @@ var vue = {
             },
             template: $("#input-label").html(),
             mounted: function(){
-                console.log("[name='"+this.name+"']")
-                // if(this.tipo == "money"){
-                //     $("[name='"+this.name+"']").maskMoney({
-                //         prefix: 'R$',
-                //         thousands: '.',
-                //         decimal: ','
-                //     });
-                // } else if(this.tipo == "quantidade"){
-                //     $("[name='"+this.name+"']").maskMoney({
-                //         prefix: '',
-                //         thousands: '.',
-                //         decimal: ','
-                //     });
-                // }
+
+                if(this.tipo == "money"){
+                    $("[name='"+this.name+"']").maskMoney({
+                        prefix: 'R$',
+                        thousands: '.',
+                        decimal: ','
+                    });
+                } else if(this.tipo == "quantidade"){
+                    $("[name='"+this.name+"']").maskMoney({
+                        prefix: '',
+                        thousands: '.',
+                        decimal: ','
+                    });
+                }
             }
             
         })
@@ -85,6 +85,7 @@ var vue = {
         // Não funciona como mask money, mas como parseReais.
         Vue.directive('money', {
             componentUpdated(el, binding){
+                
                 const amount = parseFloat(el.innerHTML).toFixed(2)
                     .replace('.',',')
                     .replace(/(\d)(?=(\d{3})+\,)/g, '$1.')
@@ -96,9 +97,8 @@ var vue = {
 }
 
 $( document ).ready(function() {
-    
     vue.directives()
     vue.components()
     vue.init()
-    
+
 });
