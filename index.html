@@ -3,33 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <script type="text/javascript" src="jquery.js"></script>
-    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css"></link>
-    <script type="text/javascript" src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script> -->
+    <!-- <script type="text/javascript" src="js/jquery.js"></script>
+    <link rel="stylesheet" href="style/bootstrap-3.3.7-dist/css/bootstrap.min.css"></link>
+    <script type="text/javascript" src="style/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script> -->
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="ESTILO.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style/ESTILO.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="jquery.maskMoney.min.js" type="text/javascript"></script>
+    <script src="js/jquery.maskMoney.min.js" type="text/javascript"></script>
 
-    <script src="vue.min.js"></script>
+    <script src="js/vue.min.js"></script>
     <title>Estudos VUE</title>
 </head>
 <body>
-    
     
     <div class="col-md-10 col-md-offset-1" id="app">
         <hr>
         <div class="row" >
             <div class="col-md-2" >
-                <modal></modal>
+                <modal name="modalzin" cleanclose></modal>
             </div>
             <div class="col-md-2" >
                 <input-label label="Campo Tipo quantidade" tipo="quantidade" name='markin1'></input-label>
             </div>
             <div class="col-md-offset-2 col-md-2">
-                <input-label label="Campo Tipo money" v-money="'R$'" name='markin2'></input-label>
+                <input-label label="Campo Tipo money" tipo="money" name='markin2'></input-label>
             </div>
             <div class="col-md-4" >
                 <input-label label="Q ISSO COLEGA (QUANTIDADE)" tipo="quantidade" name='markin3'></input-label>
@@ -38,7 +39,7 @@
         <hr>
         <div class="row">
             <div class="col-md-12">
-                <input-label label="É VUE.JS @!'ovo' (MONEY)" tipo="money" name='markin4'></input-label>
+                <select2></select2>
             </div>
         </div>
     </div>
@@ -54,14 +55,11 @@
     
     <template id="modal">
         <div class="container">
-            <!-- Trigger the modal with a button -->
             <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Abrir Modal</button>
           
-            <!-- Modal -->
-            <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal fade" id="myModal" :name="name" role="dialog">
               <div class="modal-dialog modal-lg">
               
-                <!-- Modal content-->
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -69,12 +67,11 @@
                   </div>
                   <div class="modal-body">
                     <div>
-                        <input type="text" class="form-control" name="modal" v-model="nome">
-                        <span v-money="'R$'">{{nome}}</span>
+                     <input-label label="Input no modal" :name="name + '-input'" tipo="quantidade"></input-label>
                     </div>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default close-footer" data-dismiss="modal">Close</button>
                   </div>
                 </div>
                 
@@ -84,10 +81,22 @@
           </div>
     </template>
 
+    <template id="select2">
+
+      <div class="form-group">
+        <label class="control-label" for="UF">UF</label>
+            <select class="js-example-basic-single select-UF form-control" name="UF" filtro="UF" multiple>
+              <option>orange</option>
+              <option>white</option>
+              <option>purple</option>
+            </select>
+    </div>
+
+    </template>
         
         
-    
-    
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
