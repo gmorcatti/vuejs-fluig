@@ -19,30 +19,34 @@
     <title>Estudos VUE</title>
 </head>
 <body>
-    
-    <div class="col-md-10 col-md-offset-1" id="app">
-        <hr>
-        <div class="row" >
-            <div class="col-md-2" >
-                <modal name="modalzin" cleanclose></modal>
-            </div>
-            <div class="col-md-2" >
-                <input-label label="Campo Tipo quantidade" tipo="quantidade" name='markin1'></input-label>
-            </div>
-            <div class="col-md-offset-2 col-md-2">
-                <input-label label="Campo Tipo money" tipo="money" name='markin2'></input-label>
-            </div>
-            <div class="col-md-4" >
-                <input-label label="Q ISSO COLEGA (QUANTIDADE)" tipo="quantidade" name='markin3'></input-label>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-12">
-                <select2></select2>
-            </div>
-        </div>
-    </div>
+    <form>
+
+      <div class="col-md-10 col-md-offset-1" id="app">
+          <hr>
+          <div class="row" >
+              <div class="col-md-2" >
+                  <modal name="modalzin" cleanclose></modal>
+              </div>
+              <div class="col-md-2" >
+                  <input-label label="Campo Tipo quantidade" tipo="quantidade" name='teste1'></input-label>
+              </div>
+              <div class="col-md-offset-2 col-md-2">
+                  <input-label label="Campo Tipo money" tipo="money" name='teste2'></input-label>
+              </div>
+              <div class="col-md-4" >
+                  <input-label label="Q ISSO COLEGA (QUANTIDADE)" tipo="quantidade" name='teste3'></input-label>
+              </div>
+          </div>
+          <hr>
+          <div class="row">
+              <div class="col-md-12">
+                  <select2 name="mar" label="Label do select2"></select2>
+                  <select2 name="mar2" label="Label do select2 2"></select2>
+              </div>
+          </div>
+      </div>
+
+    </form>
     
 
     <!----------------- TEMPLATES --------------------->
@@ -82,16 +86,10 @@
     </template>
 
     <template id="select2">
-
-      <div class="form-group">
-        <label class="control-label" for="UF">UF</label>
-            <select class="js-example-basic-single select-UF form-control" name="UF" filtro="UF" multiple>
-              <option>orange</option>
-              <option>white</option>
-              <option>purple</option>
-            </select>
-    </div>
-
+      <div :class="'form-group ' + name">
+        <label class="control-label" :for="name">{{ label }}</label>
+            <select class="form-control uf-select2" multiple></select>
+      </div>
     </template>
         
         

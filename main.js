@@ -16,19 +16,67 @@ var vue = {
     },
 
     components: function(){
-
+        /* Componente: Select2
+            Implementação do select2
+            propriedade: [
+                name: Nome do elemento base
+            ]
+        */
         Vue.component("select2", {
             template: $('#select2').html(),
-            mounted(){
-                $('.js-example-basic-single').select2({
+            props: {
+                name: {
+                    // type: String,
+                    required: true
+                  },
+                label: {},
+
+            },
+            data(){
+                return {
+                    dados: [
+                        "Ave",
+                        "Macaco",
+                        "Girafa",
+                        "MORANDO"
+                    ]
+                }
+            },
+            mounted: function(){
+                var component = this
+                
+                $('.' + component.name + ' .uf-select2').select2({
                     placeholder: 'Selecione uma opção',
-                    tokenSeparators: [',', ' '],
                     language: {
                         noResults: function () {
                                 return "Nenhum resultado encontrado.";
                         }
                     }
                 });
+
+                $('.'+ component.name + ' .selection').on('click', function(){
+                    console.log("AQUI");
+                        
+                    $(component.dados).each(function(index, element){
+        
+                        //Este if procura algum componente no select que tenha um value igual ao inserido, caso haja ele não é inserido novamente.
+                        if ( $('.' + component.name + ' .uf-select2').find(`option[value="${element}"]`).length == 0 ) {
+                            
+                            //Cria a a opção no select (seu valor é igual ao campo 'id' e o texto igual ao campo 'text')
+                            var mudançaOpção = new Option(element, element, false, false);
+                            
+                            // Da append nessa opção
+                            $('.' + component.name + ' .uf-select2').append(mudançaOpção).trigger('change');
+        
+                        }
+        
+                    })
+                    
+                    // Após carregar os novos elementos o select deve ser fechado e reaberto para renderizar estes elementos.
+                    $('.' + component.name + ' .uf-select2').select2('close').select2('open')
+                    
+        
+                })
                 
             }
         })
@@ -43,6 +91,7 @@ var vue = {
             ]
         */
         Vue.component('modal', {
+            template: $('#modal').html(),
             props: {
                 name: {},
                 cleanclose: { type: Boolean },
@@ -52,7 +101,6 @@ var vue = {
                     nome: 0
                 }
             },
-            template: $('#modal').html(),
             methods: {
                 
             },
@@ -76,13 +124,13 @@ var vue = {
             ]
         */
         Vue.component('input-label', {
+            template: $("#input-label").html(),
             props: ['tipo', 'label', 'name'],
             data: function(){
                 return {
                     
                 }
             },
-            template: $("#input-label").html(),
             mounted: function(){
 
                 if(this.tipo == "money"){
