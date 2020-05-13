@@ -16,32 +16,38 @@ var vue = {
     },
 
     components: function(){
-        /* Componente: Select2
-            Implementação do select2
-            propriedade: [
-                name: Nome do elemento base
-                label: Texto do label do componente
-                database: Se refere a qual a base de dados será utilizada para exibir as opções
-            ]
-        */
-       Vue.component("datas", {
+        Vue.component("datas", {
+            /* Componente: datas
+                Implementação do datas
+                propriedade: [
+                    name: Nome do elemento base
+                    label: Texto do label do componente
+                    database: Se refere a qual a base de dados será utilizada para exibir as opções
+                ]
+            */
         template: $('#data').html(),
         props: {
-            name: {
-                type: String,
-            },
-            label: {}
+            // name: {
+            //     type: String,
+            // },
+            // label: {}
         },
         // data(){
         //     return {
                 
         //     }
         // },
-        // mounted: function(){
-        //     var component = this
+        mounted: function(){
+
+
+
+            $('#teste').datepicker({
+                format: 'dd/mm/yyyy',
+                language: 'pt-BR',
+                autoclose: true
+            });
             
-            
-        // }
+        }
     })
 
     Vue.component("select2", {

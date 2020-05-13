@@ -396,3 +396,10 @@ z-index: 5000 !important;
 .chrome {
     overflow: none;
 }
+
+/* -------------------- PERSONALIZADO -----------------------*/
+
+.input-group-addon:hover {
+    cursor: pointer;
+    background-color: #e6e1e1;
+}
